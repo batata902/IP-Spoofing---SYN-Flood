@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS blacklist(
+	id INT PRIMARY KEY,
+	ip TEXT NOT NULL,
+	recorrencias INT NOT NULL DEFAULT 0
+);
