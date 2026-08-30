@@ -77,6 +77,8 @@ class Args:
 def main():
         args = Args()
 
+        print(args.verbose)
+
         is_up: bool = test_connection(args.taddr, args.tport)
         if not is_up:
                 print(f'[\033[31m-\033[m] Erro ao se conectar ao destino.')
