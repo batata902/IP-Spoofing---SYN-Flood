@@ -55,7 +55,7 @@ def check_ip(ip_addr: str) -> bool:
 		cur.execute('UPDATE blacklist SET recorrencias=(recorrencias + 1) WHERE ip = ?;', (ip_addr,))
 		conn.commit()
 
-		if query[0] > 500:
+		if query[0] > 5000:
 			return False
 
 	return True

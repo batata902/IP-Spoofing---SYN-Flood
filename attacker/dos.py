@@ -6,6 +6,7 @@ import requests
 import threading
 import argparse
 import socket
+import sys
 
 LOCK = threading.Lock()
 event = threading.Event()
@@ -28,10 +29,14 @@ def worker(target: str, port: int, verbose: bool, chunk: int, worker_id: str = '
         if event.is_set():
                 return
 
-        test = requests.get(f'http://{target}:{port}').status_code
-        if test == 500:
-                event.set()
-                return
+        try:
+                test = requests.get(f'http://{target}:{port}').status_code
+                if test == 500:
+                        event.set()
+                        return
+        except requests.exceptions.ConnectionError:
+                print('Alvo está fora do ar.')
+                sys.exit(1)
 
         else:
                 ips = get_ips(chunk)
@@ -60,7 +65,7 @@ class Args:
                 parser.add_argument('-p', '--port', required=True, type=int, help='Target port')
                 parser.add_argument('-c', '--chunk-size', type=int, default=100, help='How much packages workers will send')
                 parser.add_argument('-w', '--workers', type=int, default=10, help='Threads number')
-                parser.add_argument('-v', '--verbose', action='store_true', default=True, help='verbose mode (default=True)')
+                parser.add_argument('-v', '--verbose', action='store_true', default=False, help='verbose mode (default=True)')
                 args = parser.parse_args()
 
                 return args
