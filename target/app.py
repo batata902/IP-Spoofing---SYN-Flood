@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from scapy.all import TCP, sniff, IP
 import threading
 import sqlite3
@@ -55,20 +55,20 @@ def check_ip(ip_addr: str) -> bool:
 		cur.execute('UPDATE blacklist SET recorrencias=(recorrencias + 1) WHERE ip = ?;', (ip_addr,))
 		conn.commit()
 
-		if query[0] > 100:
+		if query[0] > 500:
 			return False
 
 	return True
 
 @app.route('/', methods=['GET'])
 def index():
-	if PACKAGE_COUNTER >= 30000:
+	if PACKAGE_COUNTER >= 10000:
 		return '', 500
 
 	if not check_ip(request.remote_addr):
-		return '<h1>BLOQUEADO</h1>', 400
+		return '<h1>BLOQUEADO</h1>', 403
 
-	return '<h1>Site maneiro</h1>'
+	return render_template('index.html')
 
 
 if __name__ == '__main__':

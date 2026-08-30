@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whitespace | Landing Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navegação -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Whitespace.</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#precos">Preços</a></li>
+        </ul>
+      </nav>
+      <a href="#precos" class="btn btn-primary">Começar Agora</a>
+    </div>
+  </header>
+
+  <!-- Seção Hero (Fundo Azul Escuro) -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h1>Ideias claras precisam de espaço.</h1>
+        <p>Elimine o ruído. Nossa plataforma oferece as ferramentas essenciais para sua equipe focar no que realmente importa, sem distrações.</p>
+        <div class="hero-buttons">
+          <a href="#precos" class="btn btn-light">Teste Grátis por 14 dias</a>
+          <a href="#demo" class="btn btn-outline-light">Agendar Demonstração</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Recursos -->
+  <section id="recursos" class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simples, mas poderoso</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">✨</div>
+          <h3>Design Intuitivo</h3>
+          <p>Uma interface limpa que não requer treinamento. Sua equipe começa a usar no primeiro dia.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>Alta Performance</h3>
+          <p>Carregamento ultrarrápido e navegação fluida, otimizada para produtividade máxima.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Segurança Total</h3>
+          <p>Seus dados estão protegidos com criptografia de ponta a ponta e backups automáticos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Depoimentos (Com animação) -->
+  <section id="depoimentos" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>O que dizem sobre nós</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-left">
+          <p class="quote">"O Whitespace transformou a maneira como nossa equipe colabora. Ganhamos horas preciosas toda semana."</p>
+          <div class="author">
+            <strong>Mariana Silva</strong>
+            <span>Diretora de Operações</span>
+          </div>
+        </div>
+        <div class="testimonial-card animate-left delay-1">
+          <p class="quote">"O design limpo e as funcionalidades focadas me ajudaram a dobrar a produtividade do meu time."</p>
+          <div class="author">
+            <strong>Carlos Mendes</strong>
+            <span>CEO, TechNova</span>
+          </div>
+        </div>
+        <div class="testimonial-card animate-left delay-2">
+          <p class="quote">"Finalmente uma ferramenta que não exige semanas de treinamento. Adotamos no mesmo dia."</p>
+          <div class="author">
+            <strong>Ana Clara</strong>
+            <span>Gerente de Projetos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Preços -->
+  <section id="precos" class="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Planos justos para todos</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Básico</h3>
+          <div class="price">R$ 49<span>/mês</span></div>
+          <ul>
+            <li>Até 5 usuários</li>
+            <li>5GB de armazenamento</li>
+            <li>Suporte por email</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Assinar Básico</a>
+        </div>
+        <div class="pricing-card highlight">
+          <div class="badge">Mais Popular</div>
+          <h3>Profissional</h3>
+          <div class="price">R$ 99<span>/mês</span></div>
+          <ul>
+            <li>Até 20 usuários</li>
+            <li>50GB de armazenamento</li>
+            <li>Suporte prioritário 24/7</li>
+            <li>Integrações avançadas</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Assinar Profissional</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Empresarial</h3>
+          <div class="price">Personalizado</div>
+          <ul>
+            <li>Usuários ilimitados</li>
+            <li>Armazenamento ilimitado</li>
+            <li>Gerente de conta dedicado</li>
+            <li>SSO e segurança avançada</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Falar com Vendas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé Escuro -->
+  <footer class="dark-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <h3>Whitespace.</h3>
+        <p>Criamos ferramentas digitais minimalistas para equipes que valorizam o foco, a simplicidade e a eficiência no dia a dia.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#">Atualizações</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Carreiras</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Whitespace Inc. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
