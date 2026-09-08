@@ -21,11 +21,7 @@ def db():
 
 lock = threading.Lock()
 
-PACKAGE_COUNTER: int = 0
-
-
 def process_tcp(package):
-	global PACKAGE_COUNTER
 
 	with lock:
 		dont_block = True
@@ -34,8 +30,6 @@ def process_tcp(package):
 
 		if dont_block:
 			print (f'[+] TCP Package -> ', package.summary())
-			PACKAGE_COUNTER += 1
-			print (f'INFO \tContador atual: {PACKAGE_COUNTER}')
 
 
 def sniff_wire():
@@ -62,9 +56,6 @@ def check_ip(ip_addr: str) -> bool:
 
 @app.route('/', methods=['GET'])
 def index():
-	if PACKAGE_COUNTER >= 10000:
-		return '', 500
-
 	if not check_ip(request.remote_addr):
 		return '<h1>BLOQUEADO</h1>', 403
 
